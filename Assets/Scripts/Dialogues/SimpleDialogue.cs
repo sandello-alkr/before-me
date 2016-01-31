@@ -7,6 +7,7 @@ public class SimpleDialogue : MonoBehaviour {
     public string[] dialogues;
     public string[] animationNames;
     public Animator speakerAnimator;
+    public bool hideOnStart;
     private bool isNeedInitiate;
     private Text dialogueText;
     private Button nextStepButton;
@@ -14,7 +15,9 @@ public class SimpleDialogue : MonoBehaviour {
 
     void Start()
     {
-        Initiate();
+        if (!hideOnStart)
+            Initiate();
+        
     }
 
     void Initiate()
