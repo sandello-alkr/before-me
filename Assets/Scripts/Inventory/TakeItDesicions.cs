@@ -46,6 +46,7 @@ public class TakeItDesicions : MonoBehaviour
                     {
                         script.enabled = true;
                     }
+					elementSprites [1] = elementSprites [0];
                     if (enabler)
                         enabler.AddObject();
                     isTaken = true;

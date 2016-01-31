@@ -10,6 +10,7 @@ public class DecideFate : MonoBehaviour {
 	public MonoBehaviour[] enablingGameScripts;
 
 	void Start () {
+		Debug.Log ("1");
 		PlayerPrefs.SetInt (prefsName, value);
 		foreach (GameObject gObject in disablingGameObjects) {
 			gObject.SetActive (false);
