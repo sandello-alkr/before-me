@@ -13,6 +13,7 @@ public class SimpleDialogue : MonoBehaviour {
     private Button nextStepButton;
     public MonoBehaviour[] nextScripts;
 	public bool isForceDisableControl = false;
+	private bool isColorSetted = false;
 
     void Start()
     {
