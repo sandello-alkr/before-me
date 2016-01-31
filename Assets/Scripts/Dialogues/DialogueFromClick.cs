@@ -36,8 +36,7 @@ public class DialogueFromClick : MonoBehaviour {
             isOnArea = true;
             if (Input.GetMouseButtonDown(0))
             {
-                this.isNeedInitiate = true;
-                this.Update();
+                this.Initiate();
             }
         }
     }
@@ -65,36 +64,30 @@ public class DialogueFromClick : MonoBehaviour {
 
     void Initiate()
     {
-        dialogueCanvas.SetActive(true);
-        dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
-        nextStepButton = GameObject.Find("NextStepButton").GetComponent<Button>();
-        currentSpeachNumber = 0;
-        nextStepButton.onClick.AddListener(() => SetNextStep());
-        dialogueText.text = dialogues[0].Replace("|n", "\n");
-        isNeedInitiate = false;
+        GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = false;
+        GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("DialogueText").GetComponent<Text>().text = dialogues[0].Replace("|n", "\n");
+        GameObject.Find("NextStepButton").GetComponent<Button>().onClick.AddListener(NextStep);
     }
 
-    public void SetNextStep()
+    public void NextStep()
     {
         currentSpeachNumber++;
-        if (currentSpeachNumber >= dialogues.Length)
+        if (currentSpeachNumber < dialogues.Length)
         {
-            //isNeedInitiate = true;
-            dialogueCanvas.SetActive(false);
-            nextStepButton.onClick.RemoveAllListeners();
+            GameObject.Find("DialogueText").GetComponent<Text>().text = dialogues[currentSpeachNumber].Replace("|n", "\n");
+        } else
+        {
+            currentSpeachNumber = 0;
+            GameObject.Find("NextStepButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = false;
+            GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = true;
             foreach (MonoBehaviour script in nextScripts)
                 script.enabled = true;
-            //this.enabled = false;
-            return;
         }
-        dialogueText.text = dialogues[currentSpeachNumber].Replace("|n", "\n");
-        if (speakerAnimator)
-            speakerAnimator.Play(animationNames[currentSpeachNumber], -1, 0);
     }
 
     void Update()
     {
-        if (isNeedInitiate)
-            Initiate();
     }
 }

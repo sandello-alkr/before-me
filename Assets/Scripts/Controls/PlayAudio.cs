@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayAudio : MonoBehaviour {
@@ -12,10 +13,14 @@ public class PlayAudio : MonoBehaviour {
     public MonoBehaviour[] afterTakenScripts;
     public Sprite[] elementSprites;
     private SpriteRenderer thisRenderer;
+    private PlayAudio bedToyScript;
+    private PlayAudio bearScript;
+    private PlayAudio horseScript;
 
     void Start()
     {
         thisRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        thisRenderer.sprite = elementSprites[0];
     }
 
     void OnMouseOver()
@@ -28,12 +33,34 @@ public class PlayAudio : MonoBehaviour {
                 playerAnimator.Play("Take", -1, 0);
                 playerRigidbody.velocity = new Vector2(0, 0);
                 source.PlayOneShot(audio);
+                if (this.gameObject.name == "Box")
+                {
+                    this.gameObject.transform.localEulerAngles = new Vector3(0, 0, 50);
+                }
                 foreach (MonoBehaviour script in afterTakenScripts)
                 {
                     script.enabled = true;
                 }
+                bedToyScript = GameObject.Find("BedToy").GetComponent<PlayAudio>();
+                bearScript = GameObject.Find("Bear").GetComponent<PlayAudio>();
+                horseScript = GameObject.Find("Horse").GetComponent<PlayAudio>();
+
+                if (bedToyScript.source.isPlaying && bearScript.source.isPlaying && horseScript.source.isPlaying)
+                {
+                    GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = true;
+                    GameObject.Find("DialogueText").GetComponent<Text>().text = "Все будет хорошо";
+                    GameObject.Find("NextStepButton").GetComponent<Button>().onClick.AddListener(CloseCanvas);
+                } else
+                {
+                    GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = false;
+                }
             }
         }
+    }
+
+    void CloseCanvas()
+    {
+        GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = false;
     }
 
     void OnMouseExit()
