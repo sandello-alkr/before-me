@@ -12,6 +12,8 @@ public class SimpleDialogue : MonoBehaviour {
     private Text dialogueText;
     private Button nextStepButton;
     public MonoBehaviour[] nextScripts;
+	public bool isForceDisableControl = false;
+	private bool isColorSetted = false;
 
     void Start()
     {
@@ -22,6 +24,12 @@ public class SimpleDialogue : MonoBehaviour {
 
     void Initiate()
     {
+		isNeedInitiate = true;
+		if (dialogueCanvas.active == true)
+			return;
+		if (isForceDisableControl) {
+			GameObject.Find ("CharacterCentralPoint").GetComponent<SimpleControl> ().enabled = false;
+		}
         dialogueCanvas.SetActive(true);
         dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
         nextStepButton = GameObject.Find("NextStepButton").GetComponent<Button>();
@@ -51,7 +59,8 @@ public class SimpleDialogue : MonoBehaviour {
 
     void Update()
     {
-        if (isNeedInitiate)
-            Initiate();
+		if (isNeedInitiate) {
+			Initiate ();
+		}
     }
 }

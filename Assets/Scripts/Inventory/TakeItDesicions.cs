@@ -14,7 +14,8 @@ public class TakeItDesicions : MonoBehaviour
     public Sprite[] elementSprites;
     private SpriteRenderer thisRenderer;
     public SettedState settedState;
-    public MaxEnabler enabler;
+	public MaxEnabler enabler;
+	private bool isGoToPosition = false;
 
     void Start()
     {
@@ -22,12 +23,15 @@ public class TakeItDesicions : MonoBehaviour
     }
 
     void OnMouseOver()
-    {
+	{
+		if (Input.GetMouseButtonDown (0))
+			isGoToPosition = true;
         thisRenderer.sprite = elementSprites[1];
         if (isTaken == false && isOnArea)
         {
-            if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) || isGoToPosition)
             {
+				isGoToPosition = false;
                 playerControl.enabled = false;
                 playerRigidbody.velocity = new Vector2(0, 0);
                 if (settedState == null || !settedState.isSelected)
@@ -42,6 +46,7 @@ public class TakeItDesicions : MonoBehaviour
                     {
                         script.enabled = true;
                     }
+					elementSprites [1] = elementSprites [0];
                     if (enabler)
                         enabler.AddObject();
                     isTaken = true;
@@ -53,7 +58,9 @@ public class TakeItDesicions : MonoBehaviour
 
     void OnMouseExit()
     {
-        thisRenderer.sprite = elementSprites[0];
+		thisRenderer.sprite = elementSprites[0];
+		if (Input.GetMouseButtonDown (0))
+			isGoToPosition = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
