@@ -11,6 +11,7 @@ public class TakeIt : MonoBehaviour {
     public MonoBehaviour[] afterTakenScripts;
     public Sprite[] elementSprites;
     private SpriteRenderer thisRenderer;
+	private bool isGoToPosition = false;
 
     void Start()
     {
@@ -19,11 +20,14 @@ public class TakeIt : MonoBehaviour {
 
     void OnMouseOver()
     {
+		if (Input.GetMouseButtonDown (0))
+			isGoToPosition = true;
         thisRenderer.sprite = elementSprites[1];
         if (isTaken == false && isOnArea)
         {
-            if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) || isGoToPosition)
             {
+				isGoToPosition = false;
                 playerControl.enabled = false;
                 playerAnimator.Play("Take", -1, 0);
                 playerRigidbody.velocity = new Vector2(0, 0);
@@ -39,7 +43,9 @@ public class TakeIt : MonoBehaviour {
 
     void OnMouseExit()
     {
-        thisRenderer.sprite = elementSprites[0];
+		thisRenderer.sprite = elementSprites[0];
+		if (Input.GetMouseButtonDown (0))
+			isGoToPosition = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
