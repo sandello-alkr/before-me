@@ -2,60 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class DialogueFromClick : MonoBehaviour {
-
-    public bool isOnArea = false;
-    public MonoBehaviour[] afterTakenScripts;
-    public Sprite[] elementSprites;
+public class Dialog : MonoBehaviour {
 
     public string[] dialogues;
     public string[] animationNames;
     public Animator speakerAnimator;
     public MonoBehaviour[] nextScripts;
-
-    private SpriteRenderer thisRenderer;
-    private bool isNeedInitiate;
     private Text dialogueText;
-    private Button nextStepButton;
-    private int currentSpeachNumber;
+    public int currentSpeachNumber;
 
     void Start()
     {
-        thisRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-    }
-
-    void OnMouseOver()
-    {
-        thisRenderer.sprite = elementSprites[1];
-        if (isOnArea)
-        {
-            isOnArea = true;
-            if (Input.GetMouseButtonDown(0))
-            {
-                this.Initiate();
-            }
-        }
-    }
-
-    void OnMouseExit()
-    {
-        thisRenderer.sprite = elementSprites[0];
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "CharacterCentralPoint")
-        {
-            isOnArea = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "CharacterCentralPoint")
-        {
-            isOnArea = false;
-        }
+        this.Initiate();
+        currentSpeachNumber = 0;
     }
 
     void Initiate()
@@ -63,7 +22,10 @@ public class DialogueFromClick : MonoBehaviour {
         GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = false;
         GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = true;
         GameObject.Find("DialogueText").GetComponent<Text>().text = dialogues[0].Replace("|n", "\n");
+        GameObject.Find("NextStepButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("NextStepButton").GetComponent<Button>().onClick.AddListener(NextStep);
+        if (speakerAnimator)
+            speakerAnimator.Play(animationNames[currentSpeachNumber], -1, 0);
     }
 
     public void NextStep()
@@ -72,7 +34,8 @@ public class DialogueFromClick : MonoBehaviour {
         if (currentSpeachNumber < dialogues.Length)
         {
             GameObject.Find("DialogueText").GetComponent<Text>().text = dialogues[currentSpeachNumber].Replace("|n", "\n");
-        } else
+        }
+        else
         {
             currentSpeachNumber = 0;
             GameObject.Find("NextStepButton").GetComponent<Button>().onClick.RemoveAllListeners();
@@ -80,10 +43,13 @@ public class DialogueFromClick : MonoBehaviour {
             GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = true;
             foreach (MonoBehaviour script in nextScripts)
                 script.enabled = true;
+            speakerAnimator.Play("idle");
+            this.enabled = false;
         }
     }
 
-    void Update()
-    {
-    }
+    // Update is called once per frame
+    void Update () {
+
+	}
 }
