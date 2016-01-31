@@ -11,6 +11,7 @@ public class PlayAudio : MonoBehaviour {
     public Rigidbody2D playerRigidbody;
     public bool isOnArea = false;
     public MonoBehaviour[] afterTakenScripts;
+    public MonoBehaviour[] startScripts;
     public Sprite[] elementSprites;
     private SpriteRenderer thisRenderer;
     private PlayAudio bedToyScript;
@@ -37,13 +38,12 @@ public class PlayAudio : MonoBehaviour {
                 {
                     this.gameObject.transform.localEulerAngles = new Vector3(0, 0, 50);
                 }
-                foreach (MonoBehaviour script in afterTakenScripts)
-                {
+                foreach (MonoBehaviour script in startScripts)
                     script.enabled = true;
-                }
+
                 bedToyScript = GameObject.Find("BedToy").GetComponent<PlayAudio>();
                 bearScript = GameObject.Find("Bear").GetComponent<PlayAudio>();
-                horseScript = GameObject.Find("Horse").GetComponent<PlayAudio>();
+                horseScript = GameObject.Find("ToyCar").GetComponent<PlayAudio>();
 
                 if (bedToyScript.source.isPlaying && bearScript.source.isPlaying && horseScript.source.isPlaying)
                 {
