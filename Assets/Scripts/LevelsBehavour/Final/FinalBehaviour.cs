@@ -26,7 +26,7 @@ public class FinalBehaviour : MonoBehaviour {
 			return;
 		} else {
 			if (!cry.isPlaying) {
-				Application.LoadLevel ("MainScreen");
+				Application.LoadLevel ("StartScreen");
 				this.enabled = false;
 			}
 		}
