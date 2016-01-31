@@ -13,6 +13,7 @@ public class PlayAudio : MonoBehaviour {
     public MonoBehaviour[] afterTakenScripts;
     public MonoBehaviour[] startScripts;
     public Sprite[] elementSprites;
+    public MonoBehaviour successScript;
     private SpriteRenderer thisRenderer;
     private PlayAudio bedToyScript;
     private PlayAudio bearScript;
@@ -47,9 +48,7 @@ public class PlayAudio : MonoBehaviour {
 
                 if (bedToyScript.source.isPlaying && bearScript.source.isPlaying && horseScript.source.isPlaying)
                 {
-                    GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = true;
-                    GameObject.Find("DialogueText").GetComponent<Text>().text = "Все будет хорошо";
-                    GameObject.Find("NextStepButton").GetComponent<Button>().onClick.AddListener(CloseCanvas);
+                    successScript.enabled = true;
                 } else
                 {
                     GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = false;

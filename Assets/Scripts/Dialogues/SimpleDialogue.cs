@@ -12,7 +12,7 @@ public class SimpleDialogue : MonoBehaviour {
     private Text dialogueText;
     private Button nextStepButton;
     public MonoBehaviour[] nextScripts;
-	public bool isForceDisableControl = false;
+    public bool isForceDisableControl = false;
 	private bool isColorSetted = false;
 
     void Start()
