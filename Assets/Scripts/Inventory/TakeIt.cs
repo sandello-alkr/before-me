@@ -3,32 +3,32 @@ using System.Collections;
 
 public class TakeIt : MonoBehaviour {
 
-    public SimpleControl playerControl;
-    public Animator playerAnimator;
-    public Rigidbody2D playerRigidbody;
-    public bool isOnArea = false;
-    private bool isTaken = false;
-    public MonoBehaviour[] afterTakenScripts;
-    public Sprite[] elementSprites;
-    private SpriteRenderer thisRenderer;
+	public SimpleControl playerControl;
+	public Animator playerAnimator;
+	public Rigidbody2D playerRigidbody;
+	public bool isOnArea = false;
+	private bool isTaken = false;
+	public MonoBehaviour[] afterTakenScripts;
+	public Sprite[] elementSprites;
+	private SpriteRenderer thisRenderer;
 	private bool isGoToPosition = false;
 
-    void Start()
-    {
-        thisRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-    }
+	void Start()
+	{
+		thisRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+	}
 
-    void OnMouseOver()
-    {
+	void OnMouseOver()
+	{
 		if (Input.GetMouseButtonDown (0))
 			isGoToPosition = true;
 		if (isGoToPosition)
 			playerControl.SetMovementSignAnimation ("Take");
-        thisRenderer.sprite = elementSprites[1];
-        if (isTaken == false && isOnArea)
-			if (Input.GetMouseButtonDown(0) || isGoToPosition)
-				TakeItOnPosition ();
-    }
+		thisRenderer.sprite = elementSprites[1];
+		if (isTaken == false && isOnArea)
+		if (Input.GetMouseButtonDown(0) || isGoToPosition)
+			TakeItOnPosition ();
+	}
 
 	void TakeItOnPosition() {
 		playerControl.SetMovementSignState (false);
@@ -44,28 +44,28 @@ public class TakeIt : MonoBehaviour {
 		this.enabled = false;
 	}
 
-    void OnMouseExit()
-    {
+	void OnMouseExit()
+	{
 		thisRenderer.sprite = elementSprites[0];
 		if (Input.GetMouseButtonDown (0))
 			isGoToPosition = false;
-    }
+	}
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "CharacterCentralPoint")
-        {
-            isOnArea = true;
+	void OnTriggerEnter2D(Collider2D collider)
+	{
+		if (collider.gameObject.name == "CharacterCentralPoint")
+		{
+			isOnArea = true;
 			if (!isTaken && isGoToPosition)
 				TakeItOnPosition ();
-        }
-    }
+		}
+	}
 
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "CharacterCentralPoint")
-        {
-            isOnArea = false;
-        }
-    }
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		if (collider.gameObject.name == "CharacterCentralPoint")
+		{
+			isOnArea = false;
+		}
+	}
 }

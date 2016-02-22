@@ -32,7 +32,6 @@ public class SimpleControl : Fliper {
 	public void SetMovementSignState(bool state) {
 		movementSign.SetActive (state);
 	}
-
     void Control()
     {
         settedStateAnimation = "Flying";
