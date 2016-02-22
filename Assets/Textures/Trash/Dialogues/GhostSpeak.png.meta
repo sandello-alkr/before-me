@@ -1,0 +1,105 @@
+fileFormatVersion: 2
+guid: b73eb6ff0964e144da94498f91393978
+timeCreated: 1454093115
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: GhostSpeak_0
+    21300002: GhostSpeak_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: GhostSpeak_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 56, y: 70}
+        - {x: 26, y: 100}
+        - {x: -50, y: 100}
+        - {x: -58, y: 93}
+        - {x: -87, y: 65}
+        - {x: -96, y: 51}
+        - {x: -96, y: -14}
+        - {x: -92, y: -55}
+        - {x: -91, y: -100}
+        - {x: 82, y: -100}
+        - {x: 82, y: -36}
+        - {x: 74, y: 32}
+    - name: GhostSpeak_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 56, y: 70}
+        - {x: 26, y: 100}
+        - {x: -50, y: 100}
+        - {x: -58, y: 93}
+        - {x: -87, y: 65}
+        - {x: -96, y: 51}
+        - {x: -96, y: -14}
+        - {x: -92, y: -55}
+        - {x: -91, y: -100}
+        - {x: 82, y: -100}
+        - {x: 82, y: -36}
+        - {x: 74, y: 32}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
