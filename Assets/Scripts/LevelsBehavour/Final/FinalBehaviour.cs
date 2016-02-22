@@ -8,9 +8,11 @@ public class FinalBehaviour : MonoBehaviour {
 	public AudioSource mainTheme;
 	public float lastFrameTime;
 	private bool isBegin = false;
+	public Animator finalAnimator;
 
 	void Start() {
 		lastFrameTime = Time.time;
+		finalAnimator.enabled = false;
 		blackRenderer.color = new Color(blackRenderer.color.r, blackRenderer.color.g, blackRenderer.color.b, 1);
 	}
 
@@ -20,12 +22,14 @@ public class FinalBehaviour : MonoBehaviour {
 			return;
 		}
 		if (!isBegin) {
+			finalAnimator.enabled = true;
+			finalAnimator.Play ("Birth");
 			mainTheme.volume = 0;
 			cry.Play ();
 			isBegin = true;
 			return;
 		} else {
-			if (!cry.isPlaying) {
+			if (!cry.isPlaying && finalAnimator.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
 				Application.LoadLevel ("StartScreen");
 				this.enabled = false;
 			}
