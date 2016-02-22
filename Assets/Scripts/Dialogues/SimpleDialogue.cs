@@ -10,7 +10,6 @@ public class SimpleDialogue : MonoBehaviour {
     public bool hideOnStart;
     private bool isNeedInitiate;
     private Text dialogueText;
-    private Button nextStepButton;
     public MonoBehaviour[] nextScripts;
     public bool isForceDisableControl = false;
 	private bool isColorSetted = false;
@@ -32,9 +31,7 @@ public class SimpleDialogue : MonoBehaviour {
 		}
         dialogueCanvas.SetActive(true);
         dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
-        nextStepButton = GameObject.Find("NextStepButton").GetComponent<Button>();
         currentSpeachNumber = 0;
-        nextStepButton.onClick.AddListener(() => SetNextStep());
         dialogueText.text = dialogues[0].Replace("|n", "\n");
         isNeedInitiate = false;
     }
@@ -46,7 +43,6 @@ public class SimpleDialogue : MonoBehaviour {
         {
             isNeedInitiate = true;
             dialogueCanvas.SetActive(false);
-            nextStepButton.onClick.RemoveAllListeners();
             foreach (MonoBehaviour script in nextScripts)
                 script.enabled = true;
             this.enabled = false;
@@ -62,5 +58,7 @@ public class SimpleDialogue : MonoBehaviour {
 		if (isNeedInitiate) {
 			Initiate ();
 		}
+		if (Input.GetMouseButtonDown(1))
+			SetNextStep();
     }
 }

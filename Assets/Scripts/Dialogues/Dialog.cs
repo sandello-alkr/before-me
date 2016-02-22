@@ -22,8 +22,6 @@ public class Dialog : MonoBehaviour {
         GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = false;
         GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = true;
         GameObject.Find("DialogueText").GetComponent<Text>().text = dialogues[0].Replace("|n", "\n");
-        GameObject.Find("NextStepButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("NextStepButton").GetComponent<Button>().onClick.AddListener(NextStep);
         if (speakerAnimator)
             speakerAnimator.Play(animationNames[currentSpeachNumber], -1, 0);
     }
@@ -38,7 +36,6 @@ public class Dialog : MonoBehaviour {
         else
         {
             currentSpeachNumber = 0;
-            GameObject.Find("NextStepButton").GetComponent<Button>().onClick.RemoveAllListeners();
             GameObject.Find("SpeachCanvas").GetComponent<Canvas>().enabled = false;
             GameObject.Find("CharacterCentralPoint").GetComponent<SimpleControl>().enabled = true;
             foreach (MonoBehaviour script in nextScripts)
@@ -50,6 +47,7 @@ public class Dialog : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+		if (Input.GetMouseButtonDown(1))
+			NextStep();
 	}
 }
