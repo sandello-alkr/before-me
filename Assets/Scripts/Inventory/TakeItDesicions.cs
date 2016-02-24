@@ -27,34 +27,35 @@ public class TakeItDesicions : MonoBehaviour
 		if (Input.GetMouseButtonDown (0))
 			isGoToPosition = true;
         thisRenderer.sprite = elementSprites[1];
-        if (isTaken == false && isOnArea)
-        {
-			if (Input.GetMouseButtonDown(0) || isGoToPosition)
-            {
-				isGoToPosition = false;
-                playerControl.enabled = false;
-                playerRigidbody.velocity = new Vector2(0, 0);
-                if (settedState == null || !settedState.isSelected)
-                {
-                    foreach (MonoBehaviour script in afterFalseScripts)
-                    {
-                        script.enabled = true;
-                    }
-                } else
-                {
-                    foreach (MonoBehaviour script in afterTrueScripts)
-                    {
-                        script.enabled = true;
-                    }
-					elementSprites [1] = elementSprites [0];
-                    if (enabler)
-                        enabler.AddObject();
-                    isTaken = true;
-                }
-                this.enabled = false;
-            }
-        }
+		if (isTaken == false && isOnArea)
+			TakeItOnPosition ();
     }
+
+	void TakeItOnPosition() { if (Input.GetMouseButtonDown(0) || isGoToPosition)
+		{
+			isGoToPosition = false;
+			playerControl.enabled = false;
+			playerRigidbody.velocity = new Vector2(0, 0);
+			if (settedState == null || !settedState.isSelected)
+			{
+				foreach (MonoBehaviour script in afterFalseScripts)
+				{
+					script.enabled = true;
+				}
+			} else
+			{
+				foreach (MonoBehaviour script in afterTrueScripts)
+				{
+					script.enabled = true;
+				}
+				elementSprites [1] = elementSprites [0];
+				if (enabler)
+					enabler.AddObject();
+				isTaken = true;
+			}
+			this.enabled = false;
+		}
+	}
 
     void OnMouseExit()
     {
@@ -67,7 +68,9 @@ public class TakeItDesicions : MonoBehaviour
     {
         if (collider.gameObject.name == "CharacterCentralPoint")
         {
-            isOnArea = true;
+			isOnArea = true;
+			if (!isTaken && isGoToPosition)
+				TakeItOnPosition ();
         }
     }
 
