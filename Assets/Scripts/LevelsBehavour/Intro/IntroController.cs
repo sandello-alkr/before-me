@@ -35,8 +35,8 @@ public class IntroController : MonoBehaviour {
             if (logoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
                 step++;
-                Application.LoadLevel("Level1");
-                Debug.Log("Loaded");
+				PlayerPrefs.SetString ("LevelName", "Level1");
+                Application.LoadLevel("LoadingScreen");
                 return;
             } else
                 FollowMouse();

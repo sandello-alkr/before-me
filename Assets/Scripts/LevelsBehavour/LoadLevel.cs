@@ -5,6 +5,7 @@ public class LoadLevel : MonoBehaviour {
 
 	public string levelName;
 	void Start () {
-		Application.LoadLevel (levelName);
+		PlayerPrefs.SetString ("LevelName", levelName);
+		Application.LoadLevel("LoadingScreen");
 	}
 }
