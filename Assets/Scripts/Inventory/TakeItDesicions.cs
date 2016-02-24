@@ -16,6 +16,7 @@ public class TakeItDesicions : MonoBehaviour
     public SettedState settedState;
 	public MaxEnabler enabler;
 	private bool isGoToPosition = false;
+	public bool isThereTutorial = false;
 
     void Start()
     {
@@ -33,6 +34,9 @@ public class TakeItDesicions : MonoBehaviour
 
 	void TakeItOnPosition() { if (Input.GetMouseButtonDown(0) || isGoToPosition)
 		{
+			if (isThereTutorial)
+				if (GameObject.Find ("TutorialCanvas") != null)
+					GameObject.Find ("TutorialCanvas").SetActive (false);
 			isGoToPosition = false;
 			playerControl.enabled = false;
 			playerRigidbody.velocity = new Vector2(0, 0);

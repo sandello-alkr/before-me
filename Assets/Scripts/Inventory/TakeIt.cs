@@ -12,6 +12,7 @@ public class TakeIt : MonoBehaviour {
 	public Sprite[] elementSprites;
 	private SpriteRenderer thisRenderer;
 	private bool isGoToPosition = false;
+	public bool isThereTutorial = false;
 
 	void Start()
 	{
@@ -31,6 +32,9 @@ public class TakeIt : MonoBehaviour {
 	}
 
 	void TakeItOnPosition() {
+		if (isThereTutorial)
+			if (GameObject.Find ("TutorialCanvas") != null)
+				GameObject.Find ("TutorialCanvas").SetActive (false);
 		playerControl.SetMovementSignState (false);
 		isGoToPosition = false;
 		playerControl.enabled = false;
