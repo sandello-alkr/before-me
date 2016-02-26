@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LoadingLevelLoader : MonoBehaviour {
@@ -11,15 +12,16 @@ public class LoadingLevelLoader : MonoBehaviour {
 	///
 	///		Slow Method for slow pc
 	///
-	/*
-	private AsyncOperation async;
+	/*private AsyncOperation async;
 	private string sceneName;
+	private Text loadingText;
 
 	 private void Start()
 	 {
 		sceneName = PlayerPrefs.GetString ("LevelName").ToString () != ""
 			? PlayerPrefs.GetString ("LevelName") : "StartScreen";
-		 StartCoroutine(LoadScene());
+		loadingText = GameObject.Find ("LoadingText").GetComponent<Text> ();
+	    StartCoroutine(LoadScene());
 	 }
 
 	 IEnumerator LoadScene()
@@ -34,9 +36,11 @@ public class LoadingLevelLoader : MonoBehaviour {
 	///
 	 private void Update()
 	{
-		if (async != null && async.progress >= 0.9f) {
-			async.allowSceneActivation = true;
+		if (async != null) {
+			loadingText.text = string.Format ("Загрузка {0}%", async.progress * 100);
+			if (async.progress >= 0.9f) {
+				async.allowSceneActivation = true;
+			}
 		}
-	 }
-	*/
+	 }*/
 }
