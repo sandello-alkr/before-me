@@ -59,6 +59,10 @@ public class SimpleControl : Fliper {
         playerRigidbody.velocity = new Vector2(currentXSpeed, currentYSpeed);
     }
 
+	public void Stop() {
+		positionToGo = this.gameObject.transform.position;
+	}
+
     bool IsSpeedSetted(float playerPosition, float positionToGo, float coefficient)
     {
         return Mathf.Abs(Mathf.Abs(playerPosition) - Mathf.Abs(positionToGo)) < coefficient;

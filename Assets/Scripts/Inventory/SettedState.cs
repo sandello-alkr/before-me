@@ -10,6 +10,7 @@ public class SettedState : MonoBehaviour {
 
     public void SetState()
     {
+		GameObject.Find ("CharacterCentralPoint").GetComponent<SimpleControl> ().Stop();
         isSelected = !isSelected;
         foreach (SettedState state in states)
         {
