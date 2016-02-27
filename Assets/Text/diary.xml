@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-16"?>
+<document>
+	<item>
+		<key>
+			<string>#diaryText1</string>
+		</key>
+		<value>
+			<string>1 text for the diary</string>
+		</value>
+	</item>
+	<item>
+		<key>
+			<string>#diaryText2</string>
+		</key>
+		<value>
+			<string>2 text for the diary</string>
+		</value>
+	</item>
+	<item>
+		<key>
+			<string>#diaryText3</string>
+		</key>
+		<value>
+			<string>3 text for the diary</string>
+		</value>
+	</item>
+	<item>
+		<key>
+			<string>#diaryText4</string>
+		</key>
+		<value>
+			<string>4 text for the diary</string>
+		</value>
+	</item>
+	<item>
+		<key>
+			<string>#diaryText5</string>
+		</key>
+		<value>
+			<string>5 text for the diary</string>
+		</value>
+	</item>
+</document>
