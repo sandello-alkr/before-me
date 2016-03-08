@@ -7,6 +7,7 @@ public class SetLightOff : MonoBehaviour {
     public MonoBehaviour nextScript;
     public SpriteRenderer gameObjectRenderer;
     public Image imageRenderer;
+	public Text textRenderer;
     public float spriteShutSpeed = -0.02f;
     private float lastFrameTime = 0;
     public float frameSpeed = 0.04f;
@@ -40,11 +41,17 @@ public class SetLightOff : MonoBehaviour {
             }
         } else
         {
-            if (imageRenderer.color.a > 0)
-            {
-                ChangeColor();
-                return true;
-            }
+			if (textRenderer) {
+				if (textRenderer.color.a > 0) {
+					ChangeColor ();
+					return true;
+				}
+			} else {
+				if (imageRenderer.color.a > 0) {
+					ChangeColor ();
+					return true;
+				}
+			}
         }
         return false;
     }
@@ -57,6 +64,8 @@ public class SetLightOff : MonoBehaviour {
         if (imageRenderer)
             imageRenderer.color = new Color(imageRenderer.color.r, imageRenderer.color.g,
                 imageRenderer.color.b, imageRenderer.color.a + spriteShutSpeed);
-
+		if (textRenderer)
+			textRenderer.color = new Color(textRenderer.color.r, textRenderer.color.g,
+				textRenderer.color.b, textRenderer.color.a + spriteShutSpeed);
     }
 }

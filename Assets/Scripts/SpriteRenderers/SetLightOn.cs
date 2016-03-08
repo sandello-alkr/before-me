@@ -15,11 +15,17 @@ public class SetLightOn : SetLightOff
         }
         else
         {
-            if (imageRenderer.color.a < 1)
-            {
-                ChangeColor();
-                return true;
-            }
+			if (textRenderer) {
+				if (textRenderer.color.a < 1) {
+					ChangeColor ();
+					return true;
+				}
+			} else {
+				if (imageRenderer.color.a < 1) {
+					ChangeColor ();
+					return true;
+				}
+			}
         }
         return false;
     }
